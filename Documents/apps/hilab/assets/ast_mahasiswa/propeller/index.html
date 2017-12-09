@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html style="-webkit-overflow-scrolling: touch;">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rotate HTML elements by mouse in JavaScript - Propeller.js</title>
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi">
+    <link rel="stylesheet" href="example/css/normalize.css">
+    <link rel="stylesheet" href="example/css/turbine.css">
+</head>
+<body>
+<img id="turbine" src="example/img/turbine.png" onmousedown="showLibraryInfo()" ontouchstart="showLibraryInfo()">
+<script src="dist/propeller.min.js"></script>
+<script>
+    new Propeller(document.getElementById('turbine'), {
+        inertia: 0.99,
+        onDragStop: function() {
+            console.log('stop');
+        },
+        onDragStart: function () {
+            console.log('start');
+        }
+    });
+
+    function showLibraryInfo() {
+        if (window.libInfoShown !== true) {
+            var windStuff = document.getElementsByClassName('wind');
+            var libStuff = document.getElementsByClassName('propeller');
+            for (var i = 0; i < windStuff.length; i++) {
+                var obj = windStuff[i];
+                obj.style.display = 'none';
+            }
+            for (var i = 0; i < libStuff.length; i++) {
+                var obj = libStuff[i];
+                obj.style.display = 'inline-block';
+            }
+            window.libInfoShown = true;
+        }
+    }
+</script>
+</body>
+</html>
